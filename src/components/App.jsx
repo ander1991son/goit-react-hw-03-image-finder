@@ -14,8 +14,8 @@ export class App extends Component {
       searchTerm: '',
       images: [],
       isLoading: false,
-      // isModalOpen: false,
-      // modalImageUrl: '',
+      isModalOpen: false,
+      modalImageUrl: '',
     };
 
     this.API_KEY = '41167755-70f3c314cd8390efeff4b47a8';
@@ -83,16 +83,16 @@ export class App extends Component {
     }
   };
 
-  // openModal = imageUrl => {
-  //   this.setState({ isModalOpen: true, modalImageUrl: imageUrl });
-  // };
+  openModal = imageUrl => {
+    this.setState({ isModalOpen: true, modalImageUrl: imageUrl }, () => {});
+  };
 
-  // closeModal = () => {
-  //   this.setState({ isModalOpen: false, modalImageUrl: '' });
-  // };
+  closeModal = () => {
+    this.setState({ isModalOpen: false, modalImageUrl: '' });
+  };
 
   render() {
-    // const { isModalOpen, modalImageUrl } = this.state;
+    const { isModalOpen, modalImageUrl } = this.state;
 
     return (
       <div>
@@ -101,13 +101,16 @@ export class App extends Component {
           onChange={e => this.setState({ searchTerm: e.target.value })}
         />
         <Loader isLoading={this.state.isLoading} />
-        <ImageGallery images={this.state.images} />
+        <ImageGallery
+          images={this.state.images}
+          isOpen={this.openModal}
+          onClose={this.closeModal}
+        />
+
         <Button images={this.state.images} LoadMore={this.handleLoadMore} />
         <Modal
           isOpen={this.state.isModalOpen}
-          onClose={() =>
-            this.setState({ isModalOpen: false, modalImageUrl: '' })
-          }
+          onClose={this.closeModal}
           imageUrl={this.state.modalImageUrl}
         />
       </div>

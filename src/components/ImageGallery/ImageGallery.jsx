@@ -1,20 +1,13 @@
 import React from 'react';
 import css from './ImageGallery.module.css';
-import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ images, onImageClick }) => {
+const ImageGallery = ({ images }) => {
   return (
     <ul className={css.gallery}>
       {images.map((image, index) => (
         <ImageGalleryItem key={index} image={image.webformatURL} />
       ))}
-      {/* {images.map(image => (
-        <ImageGalleryItem
-          key={image.id}
-          image={image.webformatURL}                                da error de key
-          onChange={() => onImageClick(image.webformatURL)}
-        />
-      ))} */}
     </ul>
   );
 };
