@@ -92,7 +92,7 @@ export class App extends Component {
   };
 
   render() {
-    const { isModalOpen, modalImageUrl } = this.state;
+    // const { isModalOpen, modalImageUrl } = this.state;
 
     return (
       <div>
